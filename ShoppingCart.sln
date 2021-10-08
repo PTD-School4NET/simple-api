@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart.Dtos", "Shoppi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart.Mappers", "ShoppingCart.Mappers\ShoppingCart.Mappers.csproj", "{6071BD3C-D40F-47C5-BEDD-B36C1C229552}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart.Application", "ShoppingCart.Application\ShoppingCart.Application.csproj", "{6987884C-8847-46F3-8412-BC347E84E0A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{6071BD3C-D40F-47C5-BEDD-B36C1C229552}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6071BD3C-D40F-47C5-BEDD-B36C1C229552}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6071BD3C-D40F-47C5-BEDD-B36C1C229552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6987884C-8847-46F3-8412-BC347E84E0A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6987884C-8847-46F3-8412-BC347E84E0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6987884C-8847-46F3-8412-BC347E84E0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6987884C-8847-46F3-8412-BC347E84E0A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,7 +7,10 @@ using Microsoft.OpenApi.Models;
 using SchoolOf.Data.Abstractions;
 using ShoppingCart.Common.Database;
 using ShoppingCart.Data;
-using ShoppingCart.Mappers; 
+using ShoppingCart.Mappers;
+using MediatR;
+using ShoppingCart.Application.Query.Handlers;
+using ShoppingCart.Application.Behaviour;
 
 namespace ShoppingCart
 {
@@ -33,7 +36,13 @@ namespace ShoppingCart
             services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
 
             // mappers
-            services.AddAutoMapper(typeof(BaseProfile).Assembly); 
+            services.AddAutoMapper(typeof(BaseProfile).Assembly);
+
+            // mediatr
+            services.AddMediatR(typeof(GetProductsHandler).Assembly);
+
+            // mediatr behaviours
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
 
             // db registration
             services.AddScoped<DatabaseContext>(); 

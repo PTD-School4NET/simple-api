@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using SchoolOf.Data.Abstractions;
-using ShoppingCart.Dtos;
-using ShoppingCart.Models;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.Extensions.Logging; 
+using ShoppingCart.Application.Query;
+using ShoppingCart.Dtos; 
+using System.Collections.Generic; 
 using System.Threading.Tasks;
 
 namespace ShoppingCart.Controllers
@@ -15,23 +14,20 @@ namespace ShoppingCart.Controllers
     public class ProductController : ControllerBase
     {  
         private readonly ILogger<ProductController> _logger;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public ProductController(ILogger<ProductController> logger, IUnitOfWork unitOfWork, IMapper mapper)
+        public ProductController(IMediator mediator)
         {
-            this._logger = logger;
-            this._unitOfWork = unitOfWork;
-            this._mapper = mapper;
+            this._mediator = mediator;
         }
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<ProductDto>), 200)]
         public async Task<IActionResult> Get()
-        { 
-            var productListDb = await this._unitOfWork.GetRepo<Product>().FindAsync(x => !x.IsDeleted); 
+        {
+            var listOfProducts = await this._mediator.Send(new GetProductsQuery());
 
-            return Ok(this._mapper.Map<List<ProductDto>>(productListDb).ToList()); 
+            return Ok(listOfProducts);
         }
     }
 }
