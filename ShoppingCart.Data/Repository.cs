@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SchoolOf.Data.Abstractions;
+using ShoppingCart.Data.Abstractions;
 using ShoppingCart.Models;
 using System;
 using System.Collections.Generic;
@@ -39,9 +39,9 @@ namespace ShoppingCart.Data
             return this._dbSet.Remove(entity) != null; 
         }
 
-        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> searchCriteria)
+        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> searchCriteria, int skip, int take)
         {
-            return await this._dbSet.Where(searchCriteria).ToListAsync();
+            return await this._dbSet.Where(searchCriteria).Skip(skip).Take(take).ToListAsync();
         } 
 
         public async Task<T> UpdateAsync(T model)

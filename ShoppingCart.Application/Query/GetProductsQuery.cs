@@ -6,5 +6,7 @@ namespace ShoppingCart.Application.Query
 {
     public class GetProductsQuery : IRequest<IEnumerable<ProductDto>>
     {
+        public int Skip { get; set; }
+        public int Take { get; set; }
     }
 }

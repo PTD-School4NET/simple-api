@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.4" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" /> 
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
       <PrivateAssets>all</PrivateAssets>
@@ -21,6 +22,7 @@
     <ProjectReference Include="..\ShoppingCart.Data\ShoppingCart.Data.csproj" />
     <ProjectReference Include="..\ShoppingCart.Dtos\ShoppingCart.Dtos.csproj" />
     <ProjectReference Include="..\ShoppingCart.Mappers\ShoppingCart.Mappers.csproj" />
+    <ProjectReference Include="..\ShoppingCart.Validators\ShoppingCart.Validators.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,13 +4,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using SchoolOf.Data.Abstractions;
+using ShoppingCart.Data.Abstractions;
 using ShoppingCart.Common.Database;
 using ShoppingCart.Data;
 using ShoppingCart.Mappers;
 using MediatR;
 using ShoppingCart.Application.Query.Handlers;
 using ShoppingCart.Application.Behaviour;
+using FluentValidation;
+using ShoppingCart.Validators;
+using ShoppingCart.Api.Filters;
 
 namespace ShoppingCart
 {
@@ -26,7 +29,8 @@ namespace ShoppingCart
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         { 
-            services.AddControllers(); 
+            services.AddControllers(x => x.Filters.Add(typeof(ExceptionFilter))); 
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ShoppingCart", Version = "v1" });
@@ -37,12 +41,16 @@ namespace ShoppingCart
 
             // mappers
             services.AddAutoMapper(typeof(BaseProfile).Assembly);
+            
+            // validators
+            services.AddValidatorsFromAssembly(typeof(BaseAbstractValidator<>).Assembly);
 
             // mediatr
             services.AddMediatR(typeof(GetProductsHandler).Assembly);
 
             // mediatr behaviours
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 
             // db registration
             services.AddScoped<DatabaseContext>(); 

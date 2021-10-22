@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace SchoolOf.Data.Abstractions
+namespace ShoppingCart.Data.Abstractions
 {
     public interface IUnitOfWork
     {

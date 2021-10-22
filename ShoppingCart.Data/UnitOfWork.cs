@@ -1,4 +1,4 @@
-﻿using SchoolOf.Data.Abstractions;
+﻿using ShoppingCart.Data.Abstractions;
 using ShoppingCart.Models;
 using System.Threading.Tasks;
 

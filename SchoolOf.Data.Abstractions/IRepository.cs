@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace SchoolOf.Data.Abstractions
+namespace ShoppingCart.Data.Abstractions
 {
     public interface IRepository<T> where T : BaseDbModel
     {
@@ -13,6 +13,6 @@ namespace SchoolOf.Data.Abstractions
         Task<bool> DeleteAsync(T model);
         Task<bool> DeleteAsync(long id);
         Task<T> GetByIdAsync(long id);
-        Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> searchCriteria);
+        Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> searchCriteria, int skip, int take);
     }
 }
